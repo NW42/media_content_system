@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
  * Сценарий удаления комментария по идентификатору.
  */
 @AllArgsConstructor
-public final class DeleteCommentById implements UseCase<DeleteCommentById.Params, Comment> {
+public final class DeleteCommentById implements UseCase<DeleteCommentById.Params, Void> {
   /**
    * Параметры сценария удаления комментария.
    *
@@ -24,7 +24,7 @@ public final class DeleteCommentById implements UseCase<DeleteCommentById.Params
   private final CommentRepository repository;
 
   @Override
-  public CompletableFuture<Either<Failure, Comment>> execute(Params params) {
-    return repository.get(params.id());
+  public CompletableFuture<Either<Failure, Void>> execute(Params params) {
+    return repository.delete(params.id());
   }
 }
